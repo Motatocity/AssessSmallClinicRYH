@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- 3D Button -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script type="text/javascript" charset="utf-8" src="js/phonegap-1.2.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        
+
+        var value = window.localStorage.getItem("key");
+        // value is now equal to "value"
+        window.localStorage.removeItem("key");
+        window.localStorage.setItem("key2", "value2");
+        window.localStorage.clear();
+        // localStorage is now empty
+    }
+
+
+    </script>
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  onclick = $("#menu-close").click(); >เลือกแผนกประเมิน</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); >ต้อนรับ</a>
+            </li>
+            <li>
+                <a href="#about" onclick = $("#menu-close").click(); >เวชระเบียน</a>
+            </li>
+            <li>
+                <a href="#services" onclick = $("#menu-close").click(); >ลูกค้าสัมพันธ์</a>
+            </li>
+            <li>
+                <a href="#portfolio" onclick = $("#menu-close").click(); >การเงินนอก</a>
+            </li>
+            <li>
+                <a href="#contact" onclick = $("#menu-close").click(); >ห้องยา</a>
+            </li>
+            <li>
+                <a href="#contact" onclick = $("#menu-close").click(); >Lab</a>
+            </li>
+            <li>
+                <a href="#contact" onclick = $("#menu-close").click(); >X-ray</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1><small>ระดับความพึงพอใจ</small> <span>คลินิก</span></h1>
+            <br>
+			<div data-role="main" class="ui-content">
+			<form>
+				<h2>ความพึงพอใจภาพรวม</h2>
+				<input type="hidden" name="clinic" id="clinic" value="คลินิกเบาหวาน" />
+				<input type="hidden" name="result" id="result" value="0" />
+                <button type="submit" id="1" class="btn btn-danger btn-sm btn3d"><img src="img/emo1.png"><br>น้อยที่สุด</button>
+                <button type="submit" id="2" class="btn btn-warning btn-sm btn3d" style="width: 144px;"><img src="img/emo2.png"><br>น้อย</button>
+                <button type="submit" id="3" class="btn btn-info btn-sm btn3d"><img src="img/emo3.png"><br>ปานกลาง</button>
+                <button type="submit" id="4" class="btn btn-primary btn-sm btn3d" style="width: 144px;"><img src="img/emo4.png"><br>มาก</button>
+                <button type="submit" id="5" class="btn btn-success btn-sm btn3d"><img src="img/emo5.png"><br>มากที่สุด</button>
+			</form>
+			</div>
+        </div>
+    </header>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+        
+    //var cookeieclinic = getCookie("clinic");
+    var cookeieclinic = window.localStorage.getItem("clinic");
+    document.getElementById("clinic").value = cookeieclinic;
+    $("span").text(cookeieclinic);
+        
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+	
+	// Submit Data
+	$('form').submit(function(){
+	var postData = $(this).serialize();
+	
+	$.ajax({
+		type: 'POST',
+		data: postData,
+		url: 'http://172.30.10.6/rajyindee/app/submit.php',
+		success: function(data){
+			console.log(data);
+			//alert('Your comment was successfully added');
+            window.location.href = "complete.html";
+		},
+		error: function(data){
+			console.log(data);
+			//alert('There was an error adding your comment');
+		}
+	});
+		return false;
+	});
+	
+	$(function(){
+        $('a').click(function(){
+            var clinic = $(this).text();
+            if(clinic!="")
+            {
+                document.getElementById("clinic").value = clinic;
+                $("span").text(clinic);
+                setCookie("clinic",clinic,365);
+                window.localStorage.setItem("clinic", clinic);
+            }
+        });
+    });
+	
+	$("button").click(function() {
+		document.getElementById("result").value = this.id;
+	});
+        
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+        
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+	
+    </script>
+
+</body>
+
+</html>
