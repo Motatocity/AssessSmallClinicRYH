@@ -304,8 +304,7 @@
 		},
 		error: function(data){
 			console.log(data);
-			//alert('There was an error adding your comment');
-			window.location.href = "complete.html";
+			alert('There was an error adding your comment ' + xhr.responseText);
 		}
 	});
 		return false;
