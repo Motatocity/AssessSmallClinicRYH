@@ -160,7 +160,8 @@
             </form>
         </div>
     </header>
-	
+
+<access origin="*" />	
 	
 <script>
     jQuery(document).ready(function () {
@@ -293,11 +294,12 @@
 	$('form').submit(function(){
 	var postData = $(this).serialize(); 
 	
+	$.support.cors = true; OR jQuery.support.cors = true;
+	
 	$.ajax({
-		type: 'POST', 
+		type: 'POST',
 		data: postData,
-		dataType: 'json',
-		crossDomain: true,
+		dataType: 'jsonp',
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
@@ -307,7 +309,7 @@
 		error: function(data){
 			console.log(data);
 			//alert('There was an error adding your comment ');
-			//window.location.href = "complete.html";
+			window.location.href = "complete.html";
 		}
 	});
 		return false;
