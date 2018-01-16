@@ -161,6 +161,7 @@
         </div>
     </header>
 	
+	
 <script>
     jQuery(document).ready(function () {
         $("#input-21f").rating({
@@ -292,13 +293,10 @@
 	$('form').submit(function(){
 	var postData = $(this).serialize(); 
 	
-	$.support.cors = true; OR jQuery.support.cors = true;
-	
 	$.ajax({
-		type: 'POST',
+		type: 'POST', 
 		data: postData,
 		crossDomain: true,
-		dataType: 'json',
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
@@ -308,7 +306,7 @@
 		error: function(data){
 			console.log(data);
 			//alert('There was an error adding your comment ');
-			window.location.href = "complete.html";
+			//window.location.href = "complete.html";
 		}
 	});
 		return false;
