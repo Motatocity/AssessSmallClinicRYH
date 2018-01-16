@@ -160,8 +160,6 @@
             </form>
         </div>
     </header>
-
-<access origin="*" />	
 	
 <script>
     jQuery(document).ready(function () {
@@ -299,7 +297,8 @@
 	$.ajax({
 		type: 'POST',
 		data: postData,
-		dataType: 'jsonp',
+		crossDomain: true,
+		dataType: 'json',
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
