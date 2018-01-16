@@ -296,10 +296,7 @@
 	$.ajax({
 		type: 'POST', 
 		data: postData,
-		async: false,
-		contentType: "application/json; charset=utf-8",
 		crossDomain: true,
-		dataType: "json",
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
