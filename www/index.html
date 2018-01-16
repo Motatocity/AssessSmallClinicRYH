@@ -297,15 +297,16 @@
 		type: 'POST', 
 		data: postData,
 		crossDomain: true,
+		dataType: "json",
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
-			//alert('Your comment was successfully added');
+			alert('Your comment was successfully added');
             window.location.href = "complete.html";
 		},
 		error: function(data){
 			console.log(data);
-			//alert('There was an error adding your comment ');
+			alert('There was an error adding your comment ');
 			//window.location.href = "complete.html";
 		}
 	});
