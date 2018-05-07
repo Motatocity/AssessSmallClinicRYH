@@ -56,50 +56,17 @@
             <li class="sidebar-brand">
                 <a href="#top"  onclick = $("#menu-close").click(); >เลือกแผนกประเมิน</a>
             </li>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); ></a>
-            </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >คลินิกเบาหวานและไทรอยด์</a>
-            </li>
-            <li>
-                <a href="#services" onclick = $("#menu-close").click(); >คลินิกรักษ์หัวใจ</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >คลินิกลูกรัก</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >คลินิกรักษ์สุขภาพ(โครงการ)</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >คลินิกรักษ์สุขภาพ(บริษัท)</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >ห้องฉุกเฉิน</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >ห้องกระดูกและข้อ</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >ห้องทำแผล</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >ศูนย์ส่องกล้องระบบทางเดินอาหาร</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >คลินิกมะเร็งนรีเวช</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >คลินิกผ่าตัดผ่านกล้อง</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >อายุรกรรมระบบประสาทและสมอง</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >ศูนย์ไตเทียม</a>
-            </li>
         </ul>
     </nav>
+	
+	<script>
+		$.getJSON("http://172.30.10.6/rajyindee/app/getclinic.php", function(result){
+			$.each(result, function(i, field){
+				$("#sidebar-wrapper ul").append("<li>\n<a href=\"#contact\" onclick = \"setclinic('" + field.name + "');\" >" + field.name + "</a>\n</li>");
+			});
+		});
+		setclinic();
+	</script>
 
     <!-- Header -->
     <header id="top" class="header">
@@ -163,6 +130,21 @@
 	
 	
 <script>
+
+	function setclinic(clinic){
+		$.CookiesMessage({});
+        $('a').click(function(){
+            if(clinic!="")
+            {
+                document.getElementById("clinic").value = clinic;
+                $("span").text(clinic);
+                setCookie("clinic",clinic,365);
+                window.localStorage.setItem("clinic", clinic);
+            }
+        });
+		$("#menu-close").click();
+    }
+
     jQuery(document).ready(function () {
         $("#input-21f").rating({
             starCaptions: function(val) {
@@ -291,23 +273,24 @@
 	
 	// Submit Data
 	$('form').submit(function(){
-	var postData = $(this).serialize(); 
+	var postData = $(this).serialize();
 	
 	$.ajax({
 		type: 'POST', 
 		data: postData,
 		crossDomain: true,
+		dataType: 'jsonp',
+		async: false,
 		url: 'http://172.30.10.6/rajyindee/app/submit_clinic.php',
 		success: function(data){
 			console.log(data);
-			alert('Your comment was successfully added');
+			//alert('Your comment was successfully added');
             window.location.href = "complete.html";
 		},
 		error: function(data){
 			console.log(data);
-			alert('Error: ' + data.Error);
 			//alert('There was an error adding your comment ');
-			//window.location.href = "complete.html";
+			window.location.href = "complete.html";
 		}
 	});
 		return false;
